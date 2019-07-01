@@ -5,3 +5,11 @@ body {
 #result {
   display: none;
 }
+
+#content{
+    width: 100px;
+    height: 100px;
+    background: #000;
+    color: #fff;
+    text-align: center;
+}

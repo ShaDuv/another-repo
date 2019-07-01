@@ -8,6 +8,9 @@ $(document).ready(function() {
   let value = currentFlashCard.randomValue;
   $("#keyword").text(currentFlashCard.keywords[keyword]);
   $("#value").text(currentFlashCard.definitions[value]);
+  setTimeout(function() {
+    $('.content').fadeOut('fast');
+  }, 3000);
 
   $('.answer').click( function (event){
     event.preventDefault();
