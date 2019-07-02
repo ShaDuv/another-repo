@@ -26,9 +26,9 @@ export class FlashCards {
   }
   scoreKeeper (userInput, computerAnswer) {
     if (userInput === computerAnswer) {
-      this.score += 1;
+      this.score = this.score +1
     } else {
-      this.score -= 1;
+      this.score = this.score -1
     }
 
   }
