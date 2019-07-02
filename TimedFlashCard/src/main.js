@@ -8,20 +8,25 @@ $(document).ready(function() {
   let value = currentFlashCard.randomValue;
   $("#keyword").text(currentFlashCard.keywords[keyword]);
   $("#value").text(currentFlashCard.definitions[value]);
-  setTimeout(function() {
-    $('.content').fadeOut('fast');
-  }, 3000);
+  // setTimeout(function() {
+  //   $('.content').fadeOut('fast');
+  // }, 10000);
 
   $('.answer').click( function (event){
     event.preventDefault();
-    let score = 0;
-    let userInput = $('.answer').val();
+    let userInput = $(this).attr('id'); // $(this) refers to button that was clicked
     let computerAnswer = currentFlashCard.computerAnswer();
-    if (userInput === computerAnswer) {
-      score += 1;
-    } else {
-      score -= 1;
+    currentFlashCard.scoreKeeper(userInput, computerAnswer);
+    $("#score").text(currentFlashCard.score);
+    let reload = setInterval(startLoad, 3000);
+    function startLoad() {
+      console.log("Today is so hard....");
+      $('#keyword').load('#keyword');
+      $('#value').load('#value');
     }
-    $("#score").text(score);
+    function stopLoad() {
+      clearInterval(reload);
+      stopLoad();
+    }
   });
 });
