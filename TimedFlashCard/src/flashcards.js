@@ -14,6 +14,12 @@ export class FlashCards {
       "Variable means anything that can vary. JavaScript includes variables which hold the data value and it can be changed anytime.",
       "actions that can be performed on objects. A JavaScript method is a property containing a function definition.",
       "a JavaScript framework created by Sam Stephenson in February 2005 as part of the foundation for Ajax support in Ruby on Rails."];
+    this.keyword; //initialize without any values. The type of variable will be runtime as goes.
+    this.randomValue; //initialize without any values. The type of variable will be runtime as goes.
+    this.getRandomVals();
+  }
+
+  getRandomVals(){
     this.randomKeyword = [Math.floor(Math.random()*this.keywords.length)];
     this.randomValue = [Math.floor(Math.random()*this.definitions.length)];
   }
@@ -26,10 +32,10 @@ export class FlashCards {
   }
   scoreKeeper (userInput, computerAnswer) {
     if (userInput === computerAnswer) {
-      this.score = this.score +1
+      this.score++;
     } else {
-      this.score = this.score -1
+      this.score--;
     }
-
+    return this.score;
   }
 }

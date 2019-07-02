@@ -1,7 +1,7 @@
 import './styles.css';
 import { FlashCards } from './flashcards.js';
 
-
+let currentScore = 0; //this is global variable
 $(document).ready(function() {
   let currentFlashCard = new FlashCards();
   let keyword = currentFlashCard.randomKeyword;
@@ -13,11 +13,17 @@ $(document).ready(function() {
     event.preventDefault();
     let userInput = $(this).attr('id'); // $(this) refers to button that was clicked
     let computerAnswer = currentFlashCard.computerAnswer();
-    currentFlashCard.scoreKeeper(userInput, computerAnswer);
-    $("#score").text(currentFlashCard.score);
-    setTimeout(function() {
-      $('#keyword').load('#keyword');
-      $('#value').load('#value');
+    currentScore = currentFlashCard.scoreKeeper(userInput, computerAnswer); //shouldn't start with let or var in order to maintain global variable.
+    $("#score").text(currentScore);
+
+    setTimeout(function(currentScore) {
+      $("#score").text(currentScore);
+      // $('#keyword').load('#keyword'); // somehow the .load() reload whole page rather than #keyword section
+      // $('#value').load('#value'); // somehow the .load() reload whole page rather than #value section
+      currentFlashCard.getRandomVals();
+      $("#keyword").text(currentFlashCard.keywords[currentFlashCard.randomKeyword]);
+      $("#value").text(currentFlashCard.definitions[currentFlashCard.randomValue]);
+
     }, 5000);
   });
 });
